@@ -1,12 +1,10 @@
 # Raspberry Pi
 
-* botbook_mcp3002.py
-  * Provides function to interact with smoke sensor.
-* buzzer.py
-* buzzer_off.py
-* smoke_detector.py
-* smoke_detector_tester.py 
-  * Send dummpy ppm data to server.
+* botbook_mcp3002.py : Provides function for interactacting with sensor.
+* buzzer.py : Activate buzzer for N seconds
+* buzzer_off.py : Deactivate buzzer
+* **smoke_detector.py** : Smoke detector
+* smoke_detector_tester.py : Send dummy ppm data to server
 
 
 # Usage

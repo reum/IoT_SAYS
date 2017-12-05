@@ -54,7 +54,7 @@ def main():
         smokeLevel = getSmokeLevel()
         print("[ ] Current smoke level is %i " % smokeLevel)
 	send_data(TARGET_CT, smokeLevel) 
-        if smokeLevel > 50:
+        if smokeLevel > 150:
             print("[!] Smoke detected")
             # Active buzzer for n seconds.
             os.system("python /home/pi/Desktop/buzzer.py 1")
