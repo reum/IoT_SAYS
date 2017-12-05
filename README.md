@@ -19,8 +19,7 @@ Our project provides an **IoT based Smoke Map** for Sejong University campus.
 
 - [oneM2M standard](http://www.onem2m.org/)
 - [Mobius server](http://developers.iotocean.org/archives/module/mobius)
-- [nCube Thyme Nodejs](http://developers.iotocean.org/archives/module/ncube-thyme-nodejs)
-- RaspberryPi, smoke sensor, and micro speaker
+- RaspberryPi, smoke sensor, and buzzer
 
 ### Team Members
 
