@@ -2,8 +2,11 @@ import time
 import botbook_mcp3002 as mcp #
 import os
 import requests
+import threading
+import random
 
 INTERVAL = 2
+TARGET_CTS = "Zone"
 TARGET_CT = "Zone1"
 
 def header_parser(header_str):
@@ -19,7 +22,7 @@ def header_parser(header_str):
 	return headers
 
 # Send sensor's data to Mobuis server
-def send_data(target_ct ,ppm):
+def send_data(target_ct, ppm):
 	header_str = """X-M2M-RI: 12345
 X-M2M-Origin: /0.2.481.1.21160310105204806
 Content-Type: application/vnd.onem2m-res+xml; ty=4
@@ -35,7 +38,7 @@ Cache-Control: no-cache"""
 	headers = header_parser(header_str)
         try:
             # Send seonsor's data to Mobius server
-	    req = requests.post("http://says.zeroday.me:7579/Mobius/SaysNode/Zone1/Sensor", POST, headers=headers)
+	    req = requests.post("http://says.zeroday.me:7579/Mobius/SaysNode/"+target_ct+"/Sensor", POST, headers=headers)
 	    if req.status_code == "200":
                 # If success,
     	    	return True
@@ -48,15 +51,15 @@ def getSmokeLevel():
     smokeLevel= mcp.readAnalog()
     return smokeLevel
 
-def main():
-    while True:
+def send_data_stub(target_ct, ppm):
+    while(1):
         time.sleep(INTERVAL)
-        smokeLevel = getSmokeLevel()
-        print("[ ] Current smoke level is %i " % smokeLevel)
-	send_data(TARGET_CT, smokeLevel) 
-        if smokeLevel > 50:
-            print("[!] Smoke detected")
-            # Active buzzer for n seconds.
-            os.system("python /home/pi/Desktop/buzzer.py 1")
+        send_data(target_ct, ppm)
+
+def main():
+    for i in range(1, 1000):
+        t = threading.Thread(target=send_data, args=(TARGET_CTS+str(i % 6), random.randint(50, 250)))
+        t.start()
+        time.sleep(0.5)
 
 main()

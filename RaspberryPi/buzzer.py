@@ -5,7 +5,6 @@ import sys
 
 BuzzerPin = 19 # Raspberry Pi Pin 17-GPIO 17
 
-
 def setup():
 	GPIO.setmode(GPIO.BCM) # Set GPIO Pin As Numbering
 	GPIO.setup(BuzzerPin, GPIO.OUT)
@@ -27,6 +26,7 @@ def beep(Delay):
 if __name__ == '__main__': # Program start from here
         if len(sys.argv) != 2:
             exit()
+
         delay = sys.argv[1]
         delay = float(delay)
     
